@@ -1030,6 +1030,18 @@ resource "aws_route" "private_ipv6_egress" {
 }
 
 ################################################################################
+# Custom Route
+################################################################################
+
+resource "aws_route" "custom_route_for_vpc_peering" {
+  count = local.create_vpc && var.create_route_for_vpc_peering ? local.len_private_subnets : 0
+
+  route_table_id              = element(aws_route_table.private[*].id, count.index)
+  destination_cidr_block      = var.custom_route_table_destination_cidr_block
+  vpc_peering_connection_id   = var.custom_route_table_vpc_peering_connection_id
+}
+
+################################################################################
 # NAT Gateway
 ################################################################################
 

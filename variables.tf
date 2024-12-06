@@ -117,6 +117,28 @@ variable "tags" {
 }
 
 ################################################################################
+# VPC Peering Route
+################################################################################
+
+variable "create_route_for_vpc_peering" {
+  description = "Controls if VPC peering route should be created (it affects almost all resources)"
+  type        = bool
+  default     = false
+}
+
+variable "custom_route_table_destination_cidr_block" {
+  description = ""
+  type        = string
+  default     = null
+}
+
+variable "custom_route_table_vpc_peering_connection_id" {
+  description = ""
+  type        = string
+  default     = null
+}
+
+################################################################################
 # DHCP Options Set
 ################################################################################
 
